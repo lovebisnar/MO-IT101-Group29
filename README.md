@@ -1,5 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 1. This is for the import of java codes
 package com.mycompany.motorph.payroll.system;
 import java.io.BufferedReader;
