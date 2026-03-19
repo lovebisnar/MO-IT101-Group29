@@ -48,7 +48,10 @@ public class MotorPHPayrollSystem {
     //** PhilHealth Calculator
     public static double ComputePhilhealthPremium(double Salary){
         double PHPremimum = Salary*0.025;
-        if (Salary<=10000) {
+        if (Salary == 0){
+             PHPremimum = 0;
+        } 
+        else if (Salary<=10000) {
             PHPremimum = 300;
             
         }
