@@ -44,6 +44,17 @@ public class MotorPHPayrollSystem {
        
         return SalsOver;
     }
+     public static double PAGIBIGCompu(double Salary){
+           double Puso = Salary*0.02;
+           if (Salary==0){
+               Puso=0;
+           }    else if (Salary>=10000) {
+            Puso = 200;
+            
+            } return Puso;
+     }
+      
+       
     
     //** PhilHealth Calculator
     public static double ComputePhilhealthPremium(double Salary){
@@ -198,12 +209,13 @@ public class MotorPHPayrollSystem {
                            double Allowance=RiceSubs+PhonAllow;
                            
                            System.out.println("\n===================================");
+                           System.out.println("Personal Information of Employee");
                            System.out.println("Employee ID: " + inputId);
                            System.out.println("Employee Name: " + firstName + " " + lastName);
                            System.out.println("Birthday: " + bday);
                            System.out.println("Position: " + position);
                            System.out.println("Basic Salary: PHP " + sal);
-                           System.out.println("Hourly Rate: PHP " + rate);
+                           System.out.println("Hourly Rate: PHP " + srate);
                            System.out.println("Allowance: PHP " + Allowance);
                            System.out.println("Semi Monthly Salary: PHP " + SemiMon);
                            System.out.println("===================================");
@@ -242,33 +254,45 @@ public class MotorPHPayrollSystem {
                            Salary1 = ComputeOverallSal(TimeDur,Hrate);
                            Cuts=MonthName + " 16-31 Cut Off";
                           String Cuts2=Cuts;
+                          
                            double PartRating2=TimeInTimeOut(UNs,Cuts);
                            TimeDur=PartRating2;
                            Salaries = ComputeOverallSal(TimeDur,Hrate);
                            Salary=Salary1+Salaries;
+                           double SSSCompu=Salary*0.05;
+                           double Pagibigpuso= PAGIBIGCompu(Salary);
                            PHPremimum=ComputePhilhealthPremium(Salary);
-                           double GrossIncome1=Salary-PHPremimum;
+                           double Allowance1=0.0;
+                           double GrossIncome1=Salary-PHPremimum-SSSCompu-Pagibigpuso;
                            if (GrossIncome1<0){
                                GrossIncome=0;
-                    
+                               Allowance1=0;
                            } else {
                                GrossIncome=GrossIncome1;
+                               Allowance1=Allowance;
                            }
                            double TaxDeduc=ComputeTaxDeduction(GrossIncome);
-                           double NetSalary=Salaries-TaxDeduc;
+                           double NetSalary=Salaries-TaxDeduc+Allowance1;
                            
-                             System.out.println("\n===================================");
+                           System.out.println("\n===================================");
+                           System.out.println("Payslip of the Employee");  
                            System.out.println("Employee ID: " + inputId);
                            System.out.println("Employee Name: " + firstName + " " + lastName);
                            System.out.println("Payroll Time " + Cuts1);
                            System.out.println("Net Salary: PHP " + String.format("%.2f", Salary1));
-                           System.out.println("Payroll Time " + Cuts2);
+                           System.out.println("Hours Work: " + String.format("%.2f", PartRating)+ " hrs");
+                           System.out.println("\nPayroll Time " + Cuts2);
                            System.out.println("Gross Salary: PHP " + String.format("%.2f", Salaries));
                            System.out.println("Total Month Salary: PHP " + String.format("%.2f", Salary));
-                           System.out.println("PhilHealth Deduction: PHP " + String.format("%.2f", PHPremimum));
                            System.out.println("Taxable Income: PHP " + String.format("%.2f", GrossIncome));
+                           System.out.println("SSS Deduction: PHP " + String.format("%.2f", SSSCompu));
+                            System.out.println("Pag-ibig Deduction: PHP " + String.format("%.2f", Pagibigpuso));
+                           System.out.println("PhilHealth Deduction: PHP " + String.format("%.2f", PHPremimum));
+                           
                            System.out.println("Tax Deduction: PHP " + String.format("%.2f", TaxDeduc));
+                            System.out.println("Allowance: PHP " + String.format("%.2f", Allowance1));
                            System.out.println("Net Salary: PHP " + String.format("%.2f", NetSalary));
+                           System.out.println("Hours Work: " + String.format("%.2f", PartRating2)+ " hrs");
                            System.out.println("===================================");
                            
                           
