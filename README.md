@@ -11,7 +11,7 @@ PhilHealth Premium: 50% of contribution below
 SSS: Based on official SSS contribution table
 Salary-based tiered contribution (₱135 – ₱1,125)
 Computed according to defined compensation ranges
-Pag-IBIG Contribution: (₱100 maximum contribution)
+Pag-IBIG Contribution: (₱200 maximum contribution)
 1% for salaries ₱1,000 – ₱1,500
 2% for salaries above ₱1,500
 Withholding Tax Deduction: Progressive BIR tax brackets (0% to 35%)
