@@ -49,7 +49,7 @@ This Phase 1 implementation serves as the foundation for future enhancements inc
 | **Role** | **Username** | **Password** |
 | -------- | -------- | -------- |
 | Employee  | ```employee```  | ```12345``` |
-| Payroll Staff  | ```payroll_staff ``` | ```12345``` |
+
 
 
 ## Project Structure  
