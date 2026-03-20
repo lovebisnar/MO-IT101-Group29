@@ -23,8 +23,10 @@ public class MotorPHPayrollSystem {
     
     //Display Greetings
     public static void displayGreeting() {
-        System.out.print("Welcome to Motor PH Payroll System\n");
-        System.out.print("\nKindly Login\n");
+        System.out.println("======================================");
+        System.out.println(" Welcome to Motor PH Payroll System! ");
+        System.out.println("======================================");
+        System.out.println("Kindly Log in.\n");
     }
     //Display Main Menu of Regular Employee
     //Assigned Number will be 1
@@ -34,6 +36,18 @@ public class MotorPHPayrollSystem {
         System.out.print("\n2. Log Work Hours");
         System.out.print("\n3. View Payslip");
         System.out.print("\n4. Apply Leave");
+        
+    }
+    
+       //Display Payroll Admin prognum code 3
+    public static void PayslipDisplay() {
+        System.out.print("1. View All Employee Month Payslip");
+        System.out.print("\n2. View Individual Payslip All Month");
+        System.out.print("\n3. View All Employee Specific Month");
+        System.out.print("\n4. View Individual Payslip Specific Month");
+        System.out.print("\n5. Back to Main Menu");
+        System.out.print("\n6. Exit");
+        System.out.print("\n7. Manage Payroll");
     }
     //** Salary Computation
      public static double ComputeOverallSal(double TimeDur, double Hrate) {
@@ -165,7 +179,7 @@ public class MotorPHPayrollSystem {
         
        displayGreeting();
        double Salary1 = 0, Salaries, Salary12=0, Salary=0.0;
-       String MonthName = null;
+       String MonthName = null,FullMName=null;
        Scanner scanner = new Scanner(System.in);
        double srate=0.0;
        double rate=0.0;
@@ -187,129 +201,160 @@ public class MotorPHPayrollSystem {
                boolean found = false;
                while ((line = br.readLine()) != null) {
                    String[] parts = line.split(","); // Split
-                   if (parts.length >= 2 && Pass == 12345) { // Ensure line has ID and name
-                       String id = parts[0].trim();
-                       // System.out.println("Test");
-                        if (id.equals(inputId) )  {
-                           //Getting all the information from the csv file
-                           String firstName = parts[2].trim();
-                           String lastName = parts.length > 1 ? parts[1].trim() : "";
-                           String bday = parts[3].trim();
-                           String position= parts[11].trim();
-                           String salaries=parts[13];
-                           String RicSub=parts[14];
-                           String PhoneAl=parts[15];
-                           String SemiMonR=parts[17];
-                           double sal=Double.parseDouble(salaries);
-                           String HrRate=parts[18].trim();
-                           srate= Double.parseDouble(HrRate);
-                           double RiceSubs=Double.parseDouble(RicSub);
-                           double PhonAllow=Double.parseDouble(PhoneAl);
-                           double SemiMon=Double.parseDouble(SemiMonR);
-                           double Allowance=RiceSubs+PhonAllow;
+                   for (String eid : parts){
+                       if (eid.trim().equals(UN)) {
+                           if (Pass == 12345) {
+                   
+                            if (parts.length >= 2 && Pass == 12345) { // Ensure line has ID and name
+                            String id = parts[0].trim();
+                            // System.out.println("Test");
+                             if (id.equals(inputId) )  {
+                                //Getting all the information from the csv file
+                                String firstName = parts[2].trim();
+                                String lastName = parts.length > 1 ? parts[1].trim() : "";
+                                String bday = parts[3].trim();
+                                String position= parts[11].trim();
+                                String salaries=parts[13];
+                                String RicSub=parts[14];
+                                String PhoneAl=parts[15];
+                                String SemiMonR=parts[17];
+                                String Position=parts[20];
+                                double sal=Double.parseDouble(salaries);
+                                String HrRate=parts[18].trim();
+                                srate= Double.parseDouble(HrRate);
+                                double RiceSubs=Double.parseDouble(RicSub);
+                                double PhonAllow=Double.parseDouble(PhoneAl);
+                                double SemiMon=Double.parseDouble(SemiMonR);
+                                double Allowance=RiceSubs+PhonAllow;
+
+                                System.out.println("\n===================================");
+                                System.out.println("Personal Information of Employee");
+                                System.out.println("Employee ID: " + inputId);
+                                System.out.println("Employee Name: " + firstName + " " + lastName);
+                                System.out.println("Birthday: " + bday);
+                                System.out.println("Position: " + position);
+                                System.out.println("Basic Salary: PHP " + sal);
+                                System.out.println("Hourly Rate: PHP " + srate);
+                                System.out.println("Allowance: PHP " + Allowance);
+                                System.out.println("Semi Monthly Salary: PHP " + SemiMon);
+                                System.out.println("===================================");
+                                for (int ix=1 ; ix<=12; ix++){
+                                  if (ix==1){
+                                      MonthName="Jan";
+                                      FullMName="January";
+                                  } else  if (ix==2){
+                                      MonthName="Feb";
+                                      FullMName="February";
+                                  }  else  if (ix==3){
+                                      MonthName="Mar";
+                                      FullMName="March";
+                                  } else  if (ix==4){
+                                      MonthName="Apr";
+                                      FullMName="April";
+                                  } else  if (ix==5){
+                                      MonthName="May";
+                                      FullMName="May";
+                                  } else  if (ix==6){
+                                      MonthName="Jun";
+                                      FullMName="June";
+
+                                  } else  if (ix==7){
+                                      MonthName="Jul";
+                                      FullMName="July";
+                                  } else  if (ix==8){
+                                      MonthName="Aug";
+                                      FullMName="August";
+                                  } else  if (ix==9){
+                                      MonthName="Sep";
+                                      FullMName="September";
+                                  } else  if (ix==10){
+                                      MonthName="Oct";
+                                      FullMName="October";
+                                  } else  if (ix==11){
+                                      MonthName="Nov";
+                                      FullMName="November";
+                                  } else  if (ix==12){
+                                      MonthName="Dec";
+                                      FullMName="December";
+                                  } 
+                                String UNs=inputId;
+                                String Cuts=MonthName + " 1-15 Cut Off";
+                                double Hrate=srate;
+                                double PartRating=TimeInTimeOut(UNs,Cuts);
+                                double TimeDur=PartRating;
+                                String Cuts1=Cuts;
+                                Salary1 = ComputeOverallSal(TimeDur,Hrate);
+                                Cuts=MonthName + " 16-31 Cut Off";
+                               String Cuts2=Cuts;
+
+                                double PartRating2=TimeInTimeOut(UNs,Cuts);
+                                TimeDur=PartRating2;
+                                Salaries = ComputeOverallSal(TimeDur,Hrate);
+                                Salary=Salary1+Salaries;
+                                double SSSCompu=Salary*0.05;
+                                double Pagibigpuso= PAGIBIGCompu(Salary);
+                                PHPremimum=ComputePhilhealthPremium(Salary);
+                                double Allowance1=0.0;
+                                double GrossIncome1=Salary-PHPremimum-SSSCompu-Pagibigpuso;
+                                if (GrossIncome1<=0){
+                                    GrossIncome=0;
+                                    Allowance1=0;
+                                } else {
+                                    GrossIncome=GrossIncome1;
+                                    Allowance1=Allowance;
+                                }
+                                double TaxDeduc=ComputeTaxDeduction(GrossIncome);
+                                double NetSalary=Salaries-TaxDeduc+Allowance1;
+
+                                System.out.println("\n===================================");
+                                System.out.println("Payslip of " + firstName + " " + lastName + " for the Month of " + FullMName);  
+                                System.out.println("Employee ID: " + inputId);
+                                System.out.println("Employee Name: " + firstName + " " + lastName);
+                                System.out.println("Payroll Time " + Cuts1);
+                                System.out.println("Gross Salary: PHP " + String.format("%.2f", Salary1));
+                                System.out.println("Net Salary: PHP " + String.format("%.2f", Salary1));
+                                System.out.println("Hours Work: " + String.format("%.2f", PartRating)+ " hrs");
+
+                                 System.out.println("\n==========");
+                                System.out.println("Payroll Time " + Cuts2);
+                                System.out.println("Gross Salary: PHP " + String.format("%.2f", Salaries));
+                                System.out.println("Total Month Salary: PHP " + String.format("%.2f", Salary));
+                                System.out.println("Taxable Income: PHP " + String.format("%.2f", GrossIncome));
+                                 System.out.println("==Deductions=====");
+                                System.out.println("    - SSS Deduction: PHP " + String.format("%.2f", SSSCompu));
+                                 System.out.println("    - Pag-ibig Deduction: PHP " + String.format("%.2f", Pagibigpuso));
+                                System.out.println("    - PhilHealth Deduction: PHP " + String.format("%.2f", PHPremimum));
+
+                                System.out.println("    - Tax Deduction: PHP " + String.format("%.2f", TaxDeduc));
+                                System.out.println("==Allowance=====");
+                                 System.out.println("Allowance: PHP " + String.format("%.2f", Allowance1));
+                                System.out.println("Net Salary: PHP " + String.format("%.2f", NetSalary));
+                                System.out.println("Hours Work: " + String.format("%.2f", PartRating2)+ " hrs");
+                                System.out.println("===================================");
+
+
+                                }
+                            found = true;
+                            break; // Stop after finding the ID
+                        }
+                         } 
+                           }//Password
+                           else {
+                            System.out.println("Wrong Employee ID and Password");
+                             break; // Stop after finding the ID
+                           } //Wrong Password Error
+                       } //Checking the EID
+                       else {
+                            System.out.println("No Employee Number Found");
+                             break; // Stop after finding the ID
+                           } //Wrong Password Error
+                       }//Password
                            
-                           System.out.println("\n===================================");
-                           System.out.println("Personal Information of Employee");
-                           System.out.println("Employee ID: " + inputId);
-                           System.out.println("Employee Name: " + firstName + " " + lastName);
-                           System.out.println("Birthday: " + bday);
-                           System.out.println("Position: " + position);
-                           System.out.println("Basic Salary: PHP " + sal);
-                           System.out.println("Hourly Rate: PHP " + srate);
-                           System.out.println("Allowance: PHP " + Allowance);
-                           System.out.println("Semi Monthly Salary: PHP " + SemiMon);
-                           System.out.println("===================================");
-                           for (int ix=1 ; ix<=12; ix++){
-                             if (ix==1){
-                                 MonthName="Jan";
-                             } else  if (ix==2){
-                                 MonthName="Feb";
-                             }  else  if (ix==3){
-                                 MonthName="Mar";
-                             } else  if (ix==4){
-                                 MonthName="Apr";
-                             } else  if (ix==5){
-                                 MonthName="May";
-                             } else  if (ix==6){
-                                 MonthName="Jun";
-                             } else  if (ix==7){
-                                 MonthName="Jul";
-                             } else  if (ix==8){
-                                 MonthName="Aug";
-                             } else  if (ix==9){
-                                 MonthName="Sep";
-                             } else  if (ix==10){
-                                 MonthName="Oct";
-                             } else  if (ix==11){
-                                 MonthName="Nov";
-                             } else  if (ix==12){
-                                 MonthName="Dec";
-                             } 
-                           String UNs=inputId;
-                           String Cuts=MonthName + " 1-15 Cut Off";
-                           double Hrate=srate;
-                           double PartRating=TimeInTimeOut(UNs,Cuts);
-                           double TimeDur=PartRating;
-                           String Cuts1=Cuts;
-                           Salary1 = ComputeOverallSal(TimeDur,Hrate);
-                           Cuts=MonthName + " 16-31 Cut Off";
-                          String Cuts2=Cuts;
-                          
-                           double PartRating2=TimeInTimeOut(UNs,Cuts);
-                           TimeDur=PartRating2;
-                           Salaries = ComputeOverallSal(TimeDur,Hrate);
-                           Salary=Salary1+Salaries;
-                           double SSSCompu=Salary*0.05;
-                           double Pagibigpuso= PAGIBIGCompu(Salary);
-                           PHPremimum=ComputePhilhealthPremium(Salary);
-                           double Allowance1=0.0;
-                           double GrossIncome1=Salary-PHPremimum-SSSCompu-Pagibigpuso;
-                           if (GrossIncome1<0){
-                               GrossIncome=0;
-                               Allowance1=0;
-                           } else {
-                               GrossIncome=GrossIncome1;
-                               Allowance1=Allowance;
-                           }
-                           double TaxDeduc=ComputeTaxDeduction(GrossIncome);
-                           double NetSalary=Salaries-TaxDeduc+Allowance1;
-                           
-                           System.out.println("\n===================================");
-                           System.out.println("Payslip of the Employee");  
-                           System.out.println("Employee ID: " + inputId);
-                           System.out.println("Employee Name: " + firstName + " " + lastName);
-                           System.out.println("Payroll Time " + Cuts1);
-                           System.out.println("Net Salary: PHP " + String.format("%.2f", Salary1));
-                           System.out.println("Hours Work: " + String.format("%.2f", PartRating)+ " hrs");
-                           System.out.println("\nPayroll Time " + Cuts2);
-                           System.out.println("Gross Salary: PHP " + String.format("%.2f", Salaries));
-                           System.out.println("Total Month Salary: PHP " + String.format("%.2f", Salary));
-                           System.out.println("Taxable Income: PHP " + String.format("%.2f", GrossIncome));
-                           System.out.println("SSS Deduction: PHP " + String.format("%.2f", SSSCompu));
-                            System.out.println("Pag-ibig Deduction: PHP " + String.format("%.2f", Pagibigpuso));
-                           System.out.println("PhilHealth Deduction: PHP " + String.format("%.2f", PHPremimum));
-                           
-                           System.out.println("Tax Deduction: PHP " + String.format("%.2f", TaxDeduc));
-                            System.out.println("Allowance: PHP " + String.format("%.2f", Allowance1));
-                           System.out.println("Net Salary: PHP " + String.format("%.2f", NetSalary));
-                           System.out.println("Hours Work: " + String.format("%.2f", PartRating2)+ " hrs");
-                           System.out.println("===================================");
-                           
-                          
-                           }
-                       found = true;
-                       break; // Stop after finding the ID
-                   }
-                    } else {
-                       System.out.println("Wrong Employee ID and Password");
-                        break; // Stop after finding the ID
-                   }
-                     }
-               
-               if (!found) {
-                   System.out.println("No ID Found.");
-               }
-           }
+                     } //eid part
+                   
+               } //line
+             
+           
         
            
              
